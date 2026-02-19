@@ -115,7 +115,7 @@
 </head>
 <body class="font-sans text-gray-700 bg-[#fafafa] flex flex-col min-h-screen selection:bg-brand-gold selection:text-white">
 
-    <!-- Premium Solid Header (No longer fixed or see-through) -->
+    <!-- Premium Solid Header (Static) -->
     <header class="relative w-full z-50 bg-white border-b border-gray-100 shadow-sm" id="main-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
@@ -131,15 +131,16 @@
                 </div>
                 
                 <!-- Desktop Nav -->
-                <nav class="hidden lg:flex space-x-8 text-sm font-medium text-gray-500 uppercase tracking-wider items-center">
+                <nav class="hidden lg:flex space-x-6 text-[13px] xl:text-sm font-medium text-gray-500 uppercase tracking-wider items-center">
                     <button onclick="navigateTo('home')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="home">Home</button>
                     <button onclick="navigateTo('about')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="about">About</button>
                     <button onclick="navigateTo('beliefs')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="beliefs">Beliefs</button>
                     <button onclick="navigateTo('expect')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="expect">What to Expect</button>
+                    <button onclick="navigateTo('times')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="times">Meeting Times</button>
                     <button onclick="navigateTo('leadership')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="leadership">Leadership</button>
                     <button onclick="navigateTo('history')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="history">History</button>
                     <button onclick="navigateTo('ministries')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="ministries">Ministries</button>
-                    <button onclick="navigateTo('contact')" class="ml-4 px-6 py-2.5 bg-brand-navy text-white rounded-full hover:bg-brand-gold hover:shadow-gold-glow transition-all duration-300 transform hover:-translate-y-0.5" data-target="contact">Contact Us</button>
+                    <button onclick="navigateTo('contact')" class="ml-2 px-6 py-2.5 bg-brand-navy text-white rounded-full hover:bg-brand-gold hover:shadow-gold-glow transition-all duration-300 transform hover:-translate-y-0.5" data-target="contact">Contact Us</button>
                 </nav>
 
                 <!-- Mobile menu button -->
@@ -158,6 +159,7 @@
                 <button onclick="navigateTo('about', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">About Us</button>
                 <button onclick="navigateTo('beliefs', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">What We Believe</button>
                 <button onclick="navigateTo('expect', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">What to Expect</button>
+                <button onclick="navigateTo('times', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Meeting Times</button>
                 <button onclick="navigateTo('leadership', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Leadership</button>
                 <button onclick="navigateTo('history', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">History</button>
                 <button onclick="navigateTo('ministries', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Ministries</button>
@@ -174,7 +176,7 @@
             <!-- Luxury Hero Section -->
             <div class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
                 <div class="absolute inset-0">
-                    <img class="w-full h-full object-cover transform scale-105" src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Church Interior Light">
+                    <img class="w-full h-full object-cover transform scale-105" src="/photos/main.jpg" alt="Sunset Church of Christ Building">
                     <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/60 to-brand-navy/90 mix-blend-multiply"></div>
                 </div>
                 
@@ -202,12 +204,41 @@
                     <div class="p-4 reveal reveal-delay-1 pt-8 md:pt-4">
                         <i class="fa-regular fa-clock text-brand-gold text-3xl mb-4"></i>
                         <h3 class="font-serif text-xl mb-2">Sunday Gatherings</h3>
-                        <p class="text-gray-400 text-sm font-sans">Bible Study: 9:30 AM<br>Worship: 10:30 AM & 5:00 PM</p>
+                        <p class="text-gray-400 text-sm font-sans">Bible Study: 9:30 AM<br>Worship: 10:30 AM & 6:00 PM</p>
                     </div>
                     <div class="p-4 reveal reveal-delay-2 pt-8 md:pt-4">
                         <i class="fa-solid fa-envelope text-brand-gold text-3xl mb-4"></i>
                         <h3 class="font-serif text-xl mb-2">Get in Touch</h3>
                         <a href="mailto:sunsetcofc@att.net" class="text-gray-400 text-sm font-sans hover:text-brand-gold transition-colors block mt-2">sunsetcofc@att.net</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Footer Extension: Scripture & Partners -->
+            <div class="bg-white py-20 lg:py-24 border-t border-gray-100">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+                    <i class="fa-solid fa-quote-left text-brand-gold/20 text-5xl mb-6"></i>
+                    <blockquote class="text-2xl lg:text-3xl font-serif italic text-brand-navy leading-relaxed mb-6">
+                        "He has shown you, O man, what is good; And what does the LORD require of you But to do justly, To love mercy, And to walk humbly with your God?"
+                    </blockquote>
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-sm font-bold block mb-16">Micah 6:8</span>
+                    
+                    <div class="flex flex-wrap justify-center items-center gap-8 lg:gap-14 reveal reveal-delay-1">
+                        <a href="http://apologeticspress.org/" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition duration-300 opacity-80 hover:opacity-100 grayscale hover:grayscale-0">
+                            <img src="/logos/apologeticspress.png" alt="Apologetics Press" class="h-16 w-auto object-contain drop-shadow-sm">
+                        </a>
+                        <a href="http://gbntv.org/" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition duration-300 opacity-80 hover:opacity-100 grayscale hover:grayscale-0">
+                            <img src="/logos/gbntv.png" alt="GBN TV" class="h-16 w-auto object-contain drop-shadow-sm">
+                        </a>
+                        <a href="https://www.christiancourier.com/" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition duration-300 opacity-80 hover:opacity-100 grayscale hover:grayscale-0">
+                            <img src="/logos/christian_courier.png" alt="Christian Courier" class="h-16 w-auto object-contain drop-shadow-sm">
+                        </a>
+                        <a href="https://www.housetohouse.com/" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition duration-300 opacity-80 hover:opacity-100 grayscale hover:grayscale-0">
+                            <img src="/logos/house_to_house.png" alt="House to House Heart to Heart" class="h-16 w-auto object-contain drop-shadow-sm">
+                        </a>
+                        <a href="http://www.wvbs.org/" target="_blank" rel="noopener noreferrer" class="hover:-translate-y-1 transition duration-300 opacity-80 hover:opacity-100 grayscale hover:grayscale-0">
+                            <img src="/logos/wvbs.jpg" alt="WVBS" class="h-16 w-auto object-contain drop-shadow-sm">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -230,8 +261,8 @@
                     </div>
                     <div class="relative reveal reveal-delay-1">
                         <!-- Premium image treatment -->
-                        <div class="aspect-[4/5] overflow-hidden shadow-premium">
-                            <img src="https://images.unsplash.com/photo-1510595350749-3db9dfd1325b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Church Bible" class="w-full h-full object-cover">
+                        <div class="aspect-[4/3] lg:aspect-[4/5] overflow-hidden shadow-premium">
+                            <img src="/photos/what_to_expect.jpg" alt="Church Interior" class="w-full h-full object-cover">
                         </div>
                         <!-- Decorative element -->
                         <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-brand-gold -z-10"></div>
@@ -411,7 +442,7 @@
                             </p>
                         </div>
                         <div class="lg:w-1/2 bg-brand-slate relative min-h-[300px]">
-                            <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bible Study" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+                            <img src="/photos/bible_classes.jpg" alt="Bible Study" class="absolute inset-0 w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -419,7 +450,53 @@
             </div>
         </section>
 
-        <!-- PAGE 5: LEADERSHIP -->
+        <!-- PAGE 5: MEETING TIMES (NEW) -->
+        <section id="times" class="page-content bg-brand-sand py-20 lg:py-32">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Gather With Us</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">Meeting Times</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal reveal-delay-1">
+                    <!-- Sunday Card -->
+                    <div class="bg-white p-10 shadow-premium border-t-4 border-brand-navy">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mb-8 text-center border-b border-gray-100 pb-4">Sunday</h3>
+                        <ul class="space-y-6 font-sans">
+                            <li class="flex justify-between items-center text-lg">
+                                <span class="text-gray-600 font-medium">Bible classes for all ages</span>
+                                <span class="text-brand-gold font-bold">9:30 am</span>
+                            </li>
+                            <li class="flex justify-between items-center text-lg">
+                                <span class="text-gray-600 font-medium">Morning Worship</span>
+                                <span class="text-brand-gold font-bold">10:30 am</span>
+                            </li>
+                            <li class="flex justify-between items-center text-lg">
+                                <span class="text-gray-600 font-medium">Evening Worship</span>
+                                <span class="text-brand-gold font-bold">6:00 pm</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Wednesday Card -->
+                    <div class="bg-white p-10 shadow-premium border-t-4 border-brand-gold">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mb-8 text-center border-b border-gray-100 pb-4">Wednesday</h3>
+                        <ul class="space-y-6 font-sans">
+                            <li class="flex flex-col space-y-2 text-lg">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 font-medium">Bible classes for all ages</span>
+                                    <span class="text-brand-gold font-bold">7:00 pm</span>
+                                </div>
+                                <span class="text-sm text-gray-500 italic block mt-2 pt-2 border-t border-gray-50">Followed by a short devotional service</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: LEADERSHIP -->
         <section id="leadership" class="page-content bg-white py-20 lg:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-20 reveal">
@@ -441,9 +518,9 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 reveal">
-                        <!-- Elder Card Template -->
-                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
-                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JH</div>
+                        <!-- Elder Cards -->
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300 items-start">
+                            <img src="/people/john_howard.jpg" alt="Jon Howard" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full shadow-md border-4 border-white flex-shrink-0">
                             <div>
                                 <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Jon Howard</h4>
                                 <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
@@ -451,8 +528,8 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
-                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JJ</div>
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300 items-start">
+                            <img src="/people/james_jamison.jpg" alt="James Jamison" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full shadow-md border-4 border-white flex-shrink-0">
                             <div>
                                 <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">James Jamison</h4>
                                 <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
@@ -460,8 +537,8 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
-                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JJ</div>
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300 items-start">
+                            <img src="/people/john_jamison.jpeg" alt="John Jamison" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full shadow-md border-4 border-white flex-shrink-0">
                             <div>
                                 <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">John Jamison</h4>
                                 <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
@@ -469,8 +546,8 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
-                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">BM</div>
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300 items-start">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-white border border-gray-200 rounded-full flex items-center justify-center flex-shrink-0 text-brand-gold text-3xl font-serif italic shadow-sm">BM</div>
                             <div>
                                 <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Bill Moorer</h4>
                                 <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
@@ -520,6 +597,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         
                         <div class="text-center p-8 bg-white border border-gray-100 shadow-premium">
+                            <img src="/people/zack_williams.png" alt="Zackary Williams" class="w-24 h-24 object-cover object-top rounded-full mx-auto mb-6 shadow-md border-4 border-brand-sand">
                             <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Zackary Williams</h4>
                             <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Preacher</span>
                             <div class="w-8 h-px bg-gray-200 mx-auto mb-6"></div>
@@ -527,6 +605,7 @@
                         </div>
 
                         <div class="text-center p-8 bg-white border border-gray-100 shadow-premium">
+                            <img src="/people/david_williams.jpg" alt="David Williams" class="w-24 h-24 object-cover object-top rounded-full mx-auto mb-6 shadow-md border-4 border-brand-sand">
                             <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">David Williams</h4>
                             <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Secretary</span>
                             <div class="w-8 h-px bg-gray-200 mx-auto mb-6"></div>
@@ -534,8 +613,9 @@
                         </div>
 
                         <div class="text-center p-8 bg-white border border-gray-100 shadow-premium flex flex-col justify-center">
+                            <img src="/people/junita_hilliard.jpg" alt="Juanita Hilliard" class="w-24 h-24 object-cover object-top rounded-full mx-auto mb-6 shadow-md border-4 border-brand-sand">
                             <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Juanita Hilliard</h4>
-                            <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Custodian</span>
+                            <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-2">Custodian</span>
                         </div>
 
                     </div>
@@ -544,7 +624,7 @@
             </div>
         </section>
 
-        <!-- PAGE 6: HISTORY (Premium Timeline Layout) -->
+        <!-- PAGE 7: HISTORY -->
         <section id="history" class="page-content bg-brand-sand py-20 lg:py-32">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-20 reveal">
@@ -605,7 +685,7 @@
             </div>
         </section>
 
-        <!-- PAGE 7: MINISTRIES -->
+        <!-- PAGE 8: MINISTRIES -->
         <section id="ministries" class="page-content bg-white py-20 lg:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-20 reveal">
@@ -614,7 +694,7 @@
                     <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
                 </div>
 
-                <!-- Edification Grid -->
+                <!-- Edification Grid with Images -->
                 <div class="mb-24">
                     <div class="flex items-center mb-10 reveal">
                         <h3 class="text-3xl font-serif font-bold text-brand-navy mr-6">Edification</h3>
@@ -623,51 +703,91 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-book-open text-brand-gold mr-3"></i>Bible Classes</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">We offer a wonderful curriculum at Sunset that we hope will increase your knowledge of the Bible, and aid your growth as a Christian. We have specific classes for every age group, from Kindergarten to Adults. Our elders oversee the teachers used and curriculum taught, it is their goal that these classes purpose be (simply stated) to study the Bible and make Christians.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group flex flex-col overflow-hidden">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/bible_classes.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Bible Classes">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Bible Classes</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">We offer a wonderful curriculum at Sunset that we hope will increase your knowledge of the Bible, and aid your growth as a Christian. We have specific classes for every age group, from Kindergarten to Adults. Our elders oversee the teachers used and curriculum taught, it is their goal that these classes purpose be (simply stated) to study the Bible and make Christians.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-seedling text-brand-gold mr-3"></i>Youth @ Sunset</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a wonderful group of young people. Our goal is that they will establish a faith they can call their own and grow in their relationship with God. We strive to fulfill this goal through devotionals, service projects, retreats, outings, and fellowshipping at every opportunity. We would love to have you join us for any activity!</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group flex flex-col overflow-hidden">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/youth_sunset.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Youth Group">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Youth @ Sunset</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a wonderful group of young people. Our goal is that they will establish a faith they can call their own and grow in their relationship with God. We strive to fulfill this goal through devotionals, service projects, retreats, outings, and fellowshipping at every opportunity.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-graduation-cap text-brand-gold mr-3"></i>College Group</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a very small group of young college-age adults, however they are also a very close group. They are constantly planning activities, get togethers, devotionals, and are always ready to help serve in the congregation.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group flex flex-col overflow-hidden">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/college_group.jpg" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" alt="College Group">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">College Group</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a very small group of young college-age adults, however they are also a very close group. They are constantly planning activities, get togethers, devotionals, and are always ready to help serve in the congregation.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-map text-brand-gold mr-3"></i>Preaching Rotations</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">In our area there are a lot of small towns/communities with smaller congregations in need of a preacher, and we do our best to fill that need. A group of men rotate through a list of congregations, preaching on Sundays. The men our Elders send out to preach are studied, passionate about the Gospel, and qualified to preach sound Doctrine.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group flex flex-col overflow-hidden">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/preaching_rotations.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Preaching">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Preaching Rotations</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">In our area there are a lot of small towns/communities with smaller congregations in need of a preacher, and we do our best to fill that need. A group of men rotate through a list of congregations, preaching on Sundays. The men our Elders send out to preach are studied, passionate about the Gospel, and qualified to preach sound Doctrine.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-mug-hot text-brand-gold mr-3"></i>Monthly Breakfasts</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Once a month, the Men's and Ladies' groups meet for a fellowship breakfast and devotional.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group flex flex-col overflow-hidden">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/monthly_breakfast.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Breakfast">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Monthly Breakfasts</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">Once a month, the Men's and Ladies' groups meet for a fellowship breakfast and devotional.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group relative overflow-hidden">
-                            <div class="absolute top-4 right-[-35px] bg-brand-slate text-white text-[10px] font-bold py-1 px-10 transform rotate-45 tracking-widest">NOT MEETING</div>
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-gem text-brand-gold mr-3"></i>Rubies Class</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Rubies Class is the name of the Sunset Women's Bible Study Group. They meet once a month in the home of a member for a Bible study and devotional.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group flex flex-col overflow-hidden relative">
+                            <div class="absolute top-4 right-[-35px] z-10 bg-brand-slate text-white text-[10px] font-bold py-1 px-10 transform rotate-45 tracking-widest">NOT MEETING</div>
+                            <div class="h-48 w-full overflow-hidden grayscale">
+                                <img src="/photos/women_bible_study.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Women's Bible Study">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Rubies Class</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">Rubies Class is the name of the Sunset Women's Bible Study Group. They meet once a month in the home of a member for a Bible study and devotional.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-tents text-brand-gold mr-3"></i>Barton Bible Camp</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Barton Bible Camp is a place loved by many people in this area. We host the first week of camp, which is Elementary week, and two other congregations host Jr. High and Sr. High weeks. The qualifications for being staff during this week are that you are a faithful Christian, and good example.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group flex flex-col overflow-hidden md:col-span-2 lg:col-span-1">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/barton_bible_camp.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Camp">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Barton Bible Camp</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">The Barton Bible Camp is a place loved by many people in this area. We host the first week of camp, which is Elementary week, and two other congregations host Jr. High and Sr. High weeks.</p>
+                            </div>
                         </div>
 
-                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group lg:col-span-2">
-                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-users text-brand-gold mr-3"></i>Training Classes</h4>
-                            <p class="text-gray-600 font-sans text-sm leading-relaxed">In these bi-annual classes, our young men are taught all of the basics for leading in worship and for being future servants of the church. Our young ladies are taught how to serve others and to use their talents for the Lord.</p>
+                        <div class="border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group flex flex-col overflow-hidden lg:col-span-2">
+                            <div class="h-48 w-full overflow-hidden">
+                                <img src="/photos/training_classes.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Training Classes">
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition">Training Classes</h4>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">In these bi-annual classes, our young men are taught all of the basics for leading in worship and for being future servants of the church. Our young ladies are taught how to serve others and to use their talents for the Lord.</p>
+                            </div>
                         </div>
 
                     </div>
                 </div>
 
-                <!-- Benevolence & Outreach Layout -->
+                <!-- Benevolence & Outreach Section with Images -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     
                     <!-- Benevolence -->
@@ -677,20 +797,37 @@
                             <div class="flex-grow h-px bg-gray-200"></div>
                         </div>
                         <div class="space-y-6">
-                            <div class="flex items-start">
-                                <i class="fa-solid fa-house-chimney-medical text-brand-gold text-2xl mt-1 mr-4"></i>
-                                <div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6 border border-gray-100 p-4 rounded shadow-sm hover:shadow-md transition">
+                                <div class="sm:w-1/3 flex-shrink-0 flex items-center justify-center bg-gray-50">
+                                    <img src="/photos/paragould_children.jpg" alt="Paragould Children's Home" class="w-full h-24 object-contain">
+                                </div>
+                                <div class="sm:w-2/3 flex flex-col justify-center">
                                     <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Paragould Children's Home</h4>
                                     <p class="text-gray-600 font-sans text-sm">Children's Homes, Inc. is operated by members of the church out of Paragould, Arkansas.</p>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <i class="fa-solid fa-house-chimney-medical text-brand-gold text-2xl mt-1 mr-4"></i>
-                                <div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6 border border-gray-100 p-4 rounded shadow-sm hover:shadow-md transition">
+                                <div class="sm:w-1/3 flex-shrink-0 flex items-center justify-center bg-gray-50">
+                                    <img src="/photos/southern_christian_home.png" alt="Morrilton Children's Home" class="w-full h-24 object-contain">
+                                </div>
+                                <div class="sm:w-2/3 flex flex-col justify-center">
                                     <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Morrilton Children's Home</h4>
                                     <p class="text-gray-600 font-sans text-sm">Southern Christian Children's Home is operated by members of the church, in Morrilton, Arkansas.</p>
                                 </div>
                             </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6 border border-gray-100 p-4 rounded shadow-sm hover:shadow-md transition">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/families_first.jpg" alt="Families First" class="w-full h-24 object-cover rounded-sm">
+                                </div>
+                                <div class="sm:w-2/3 flex flex-col justify-center">
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Families First</h4>
+                                    <p class="text-gray-600 font-sans text-sm">"...they also serve Arkansas congregations and families as a Lobbyist with the Arkansas Legislature..."</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -701,30 +838,57 @@
                             <div class="flex-grow h-px bg-gray-200"></div>
                         </div>
                         <div class="space-y-6">
-                            <div class="border-b border-gray-100 pb-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Esudas Bontha's Work in India</h4>
-                                <p class="text-gray-600 font-sans text-sm">Esudas and his family are doing a great work of preaching the gospel, ministering to the churches, and giving a home to dozens of children.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6 border-b border-gray-100 pb-6">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/esudas_baptizing.jpg" alt="Esudas Bontha" class="w-full h-28 object-cover rounded-sm shadow-sm">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Esudas Bontha's Work in India</h4>
+                                    <p class="text-gray-600 font-sans text-sm leading-relaxed">Esudas and his family are doing a great work of preaching the gospel, ministering to the churches, and giving a home to dozens of children.</p>
+                                </div>
                             </div>
-                            <div class="border-b border-gray-100 pb-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Memphis School of Preaching</h4>
-                                <p class="text-gray-600 font-sans text-sm">The Sunset church of Christ has a particular interest in the training of preachers. We have supported students from MSOP for years, praying that our efforts will help. Our brotherhood needs more men willing to preach the pure Gospel, and we want to aid those efforts.</p>
+
+                            <div class="flex flex-col sm:flex-row gap-6 border-b border-gray-100 pb-6">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/memphis_school_preaching.jpg" alt="Memphis School" class="w-full h-28 object-cover rounded-sm shadow-sm">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Memphis School of Preaching</h4>
+                                    <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a particular interest in the training of preachers. We want to aid the efforts of men willing to preach the pure Gospel.</p>
+                                </div>
                             </div>
-                            <div class="border-b border-gray-100 pb-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Southeast-Asia Missions</h4>
-                                <p class="text-gray-600 font-sans text-sm">Jeff Bell worked in South East Asia for many years with Daniel Hamm and assumed the work in 2020 when Daniel went to his eternal home. He has continued to teach and preach there as often as he is able.</p>
+
+                            <div class="flex flex-col sm:flex-row gap-6 border-b border-gray-100 pb-6">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/southeast_asia_missions.jpg" alt="Southeast Asia Missions" class="w-full h-28 object-cover rounded-sm shadow-sm">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Southeast-Asia Missions</h4>
+                                    <p class="text-gray-600 font-sans text-sm leading-relaxed">Jeff Bell worked in South East Asia for many years with Daniel Hamm and assumed the work in 2020. He continues to teach and preach there.</p>
+                                </div>
                             </div>
-                            <div class="border-b border-gray-100 pb-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Truth For Today</h4>
-                                <p class="text-gray-600 font-sans text-sm">"Truth for Today World Mission School in Searcy, Arkansas, is a multifaceted non-profit organization dedicated to world evangelism. Directed by Eddie Cloer, a professor of Bible and preaching courses at Harding University, TFTWMS strives to teach faithfully the Holy Scriptures of our Lord."</p>
+
+                            <div class="flex flex-col sm:flex-row gap-6 border-b border-gray-100 pb-6">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/truth_for_today.jpg" alt="Truth For Today" class="w-full h-28 object-cover object-left rounded-sm shadow-sm">
+                                </div>
+                                <div class="sm:w-2/3">
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Truth For Today</h4>
+                                    <p class="text-gray-600 font-sans text-sm leading-relaxed">Truth for Today World Mission School in Searcy, Arkansas, is a multifaceted non-profit organization dedicated to world evangelism.</p>
+                                </div>
                             </div>
-                            <div class="border-b border-gray-100 pb-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Families First</h4>
-                                <p class="text-gray-600 font-sans text-sm">"...they also serve Arkansas congregations and families as a Lobbyist with the Arkansas Legislature. Their testimonies before legislative committees present state lawmakers..."</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6 bg-brand-navy text-white p-6 rounded shadow-premium mt-2">
+                                <div class="sm:w-1/3 flex-shrink-0">
+                                    <img src="/photos/gospel_meetings.jpg" alt="Gospel Meetings" class="w-full h-28 object-cover rounded-sm shadow-sm opacity-90">
+                                </div>
+                                <div class="sm:w-2/3 flex flex-col justify-center">
+                                    <h4 class="text-lg font-serif font-bold text-brand-gold mb-2">Gospel Meetings</h4>
+                                    <p class="text-white/80 font-sans text-sm leading-relaxed">For us, Gospel Meetings are a treat! We host two annual meetings. The speakers are always sound men who our elders know will rightly divide the Word of God.</p>
+                                </div>
                             </div>
-                            <div class="bg-brand-navy p-6 mt-4">
-                                <h4 class="text-lg font-serif font-bold text-brand-gold mb-2">Gospel Meetings</h4>
-                                <p class="text-white/80 font-sans text-sm">For us, Gospel Meetings are a treat! We host two annual meetings, one in the Spring, and another in the Fall. The speakers are always sound men who our elders know will rightly divide the Word of God.</p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -732,7 +896,7 @@
             </div>
         </section>
 
-        <!-- PAGE 8: CONTACT -->
+        <!-- PAGE 9: CONTACT -->
         <section id="contact" class="page-content bg-brand-sand py-20 lg:py-32">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 reveal">
@@ -767,6 +931,13 @@
                                         </div>
                                     </div>
                                     <div class="flex items-start">
+                                        <i class="fa-solid fa-phone mt-1 w-6 text-brand-gold opacity-80"></i>
+                                        <div>
+                                            <span class="block font-semibold mb-1">Phone</span>
+                                            <a href="tel:8708451824" class="text-white/70 hover:text-white transition text-sm">(870) 845-1824</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
                                         <i class="fa-solid fa-paper-plane mt-1 w-6 text-brand-gold opacity-80"></i>
                                         <div>
                                             <span class="block font-semibold mb-1">Email</span>
@@ -785,7 +956,7 @@
                                     </div>
                                     <div class="flex justify-between border-b border-white/10 pb-2">
                                         <span>Sunday Worship</span>
-                                        <span>10:30 AM & 5:00 PM</span>
+                                        <span>10:30 AM & 6:00 PM</span>
                                     </div>
                                     <div class="flex justify-between pt-2">
                                         <span>Wednesday Bible Study</span>
