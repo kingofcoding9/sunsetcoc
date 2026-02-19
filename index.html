@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Church of Christ | Nashville, AR</title>
+    <meta name="description" content="Welcome to the Sunset Church of Christ in Nashville, Arkansas. Come be a part of our family.">
+    
+    <!-- Google Fonts: Playfair Display (Luxury Serif) & Inter (Clean Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',    /* Deep elegant navy */
+                            slate: '#1e293b',   /* Lighter navy/slate */
+                            gold: '#d4af37',    /* Premium muted gold */
+                            sand: '#f8f5f0',    /* Warm off-white background */
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 40px -15px rgba(0,0,0,0.05)',
+                        'gold-glow': '0 10px 30px -10px rgba(212, 175, 55, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* SPA Transitions */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page-content.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Navigation Active State */
+        .nav-link.active {
+            color: #d4af37; /* Gold */
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+        .reveal-delay-3 { transition-delay: 300ms; }
+
+        /* Timeline specific */
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #d4af37;
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Smooth Mobile Menu */
+        #mobile-menu {
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 600px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-[#fafafa] flex flex-col min-h-screen selection:bg-brand-gold selection:text-white">
+
+    <!-- Premium Solid Header (No longer fixed or see-through) -->
+    <header class="relative w-full z-50 bg-white border-b border-gray-100 shadow-sm" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="navigateTo('home')">
+                    <div class="w-12 h-12 bg-brand-navy rounded-full flex items-center justify-center mr-4 shadow-lg group-hover:bg-brand-gold transition duration-300">
+                        <i class="fa-solid fa-church text-white text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-2xl text-brand-navy leading-none tracking-tight">Sunset</span>
+                        <span class="text-brand-gold text-[0.65rem] font-sans tracking-[0.2em] uppercase font-semibold mt-1">Church of Christ</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex space-x-8 text-sm font-medium text-gray-500 uppercase tracking-wider items-center">
+                    <button onclick="navigateTo('home')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="home">Home</button>
+                    <button onclick="navigateTo('about')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="about">About</button>
+                    <button onclick="navigateTo('beliefs')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="beliefs">Beliefs</button>
+                    <button onclick="navigateTo('expect')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="expect">What to Expect</button>
+                    <button onclick="navigateTo('leadership')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="leadership">Leadership</button>
+                    <button onclick="navigateTo('history')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="history">History</button>
+                    <button onclick="navigateTo('ministries')" class="nav-link relative hover:text-brand-navy transition-colors pb-1" data-target="ministries">Ministries</button>
+                    <button onclick="navigateTo('contact')" class="ml-4 px-6 py-2.5 bg-brand-navy text-white rounded-full hover:bg-brand-gold hover:shadow-gold-glow transition-all duration-300 transform hover:-translate-y-0.5" data-target="contact">Contact Us</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-navy hover:text-brand-gold focus:outline-none p-2 transition-colors">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 z-50">
+            <div class="px-6 py-6 space-y-4">
+                <button onclick="navigateTo('home', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Home</button>
+                <button onclick="navigateTo('about', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">About Us</button>
+                <button onclick="navigateTo('beliefs', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">What We Believe</button>
+                <button onclick="navigateTo('expect', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">What to Expect</button>
+                <button onclick="navigateTo('leadership', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Leadership</button>
+                <button onclick="navigateTo('history', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">History</button>
+                <button onclick="navigateTo('ministries', true)" class="block w-full text-left text-lg font-serif text-brand-navy hover:text-brand-gold border-b border-gray-50 pb-2">Ministries</button>
+                <button onclick="navigateTo('contact', true)" class="block w-full text-left text-lg font-serif text-brand-gold font-bold pt-2">Contact Us</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- PAGE 1: HOME -->
+        <section id="home" class="page-content active">
+            <!-- Luxury Hero Section -->
+            <div class="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0">
+                    <img class="w-full h-full object-cover transform scale-105" src="https://images.unsplash.com/photo-1438283173091-5dbf5c5a3206?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Church Interior Light">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/60 to-brand-navy/90 mix-blend-multiply"></div>
+                </div>
+                
+                <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-12">
+                    <span class="block text-brand-gold font-sans tracking-[0.3em] uppercase text-sm mb-6 reveal">Welcome to Sunset</span>
+                    <h1 class="text-5xl sm:text-6xl md:text-8xl font-serif font-bold text-white mb-8 leading-[1.1] reveal reveal-delay-1 drop-shadow-2xl">
+                        Come Be a<br><span class="italic font-light text-brand-sand">Part of our Family.</span>
+                    </h1>
+                    
+                    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 reveal reveal-delay-2">
+                        <button onclick="navigateTo('expect')" class="w-full sm:w-auto px-10 py-4 bg-brand-gold text-white font-sans font-medium tracking-wide uppercase text-sm rounded-none hover:bg-white hover:text-brand-navy transition-all duration-500 shadow-gold-glow">What to Expect</button>
+                        <button onclick="navigateTo('about')" class="w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-white text-white font-sans font-medium tracking-wide uppercase text-sm rounded-none hover:bg-white hover:text-brand-navy transition-all duration-500">Discover More</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Info Ribbon -->
+            <div class="bg-brand-navy text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
+                    <div class="p-4 reveal">
+                        <i class="fa-solid fa-location-dot text-brand-gold text-3xl mb-4"></i>
+                        <h3 class="font-serif text-xl mb-2">Location</h3>
+                        <a href="https://maps.app.goo.gl/2byTG6fC4uEo7VQB8" target="_blank" rel="noopener noreferrer" class="text-gray-400 text-sm font-sans hover:text-brand-gold transition-colors inline-block">1420 W Sunset St<br>Nashville, AR 71852</a>
+                    </div>
+                    <div class="p-4 reveal reveal-delay-1 pt-8 md:pt-4">
+                        <i class="fa-regular fa-clock text-brand-gold text-3xl mb-4"></i>
+                        <h3 class="font-serif text-xl mb-2">Sunday Gatherings</h3>
+                        <p class="text-gray-400 text-sm font-sans">Bible Study: 9:30 AM<br>Worship: 10:30 AM & 5:00 PM</p>
+                    </div>
+                    <div class="p-4 reveal reveal-delay-2 pt-8 md:pt-4">
+                        <i class="fa-solid fa-envelope text-brand-gold text-3xl mb-4"></i>
+                        <h3 class="font-serif text-xl mb-2">Get in Touch</h3>
+                        <a href="mailto:sunsetcofc@att.net" class="text-gray-400 text-sm font-sans hover:text-brand-gold transition-colors block mt-2">sunsetcofc@att.net</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: ABOUT US -->
+        <section id="about" class="page-content bg-brand-sand py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+                    <div class="reveal">
+                        <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Our Identity</span>
+                        <h2 class="text-4xl lg:text-6xl font-serif font-bold text-brand-navy mb-8 leading-tight">A Place to <br><span class="italic text-gray-500">Belong.</span></h2>
+                        <p class="text-xl text-brand-slate font-serif italic mb-8 border-l-2 border-brand-gold pl-6 py-2">
+                            "We are all looking for a place that makes us feel like family. A place where our children can grow up to love each other, a place where forgiveness is freely given, a place to leave our guilt behind. We are all looking for a place to belong. Christ's church is just that place!"
+                        </p>
+                        <p class="text-gray-600 leading-relaxed font-sans text-lg">
+                            The members of the Sunset church of Christ want you to have the sense of belonging that Jesus promised to the faithful. We want to help you bear your burdens, lift your spirits, and encourage you to have a better life through God's Word.
+                        </p>
+                    </div>
+                    <div class="relative reveal reveal-delay-1">
+                        <!-- Premium image treatment -->
+                        <div class="aspect-[4/5] overflow-hidden shadow-premium">
+                            <img src="https://images.unsplash.com/photo-1510595350749-3db9dfd1325b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Church Bible" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Decorative element -->
+                        <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-brand-gold -z-10"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+                    <div class="reveal">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mb-6">We at Sunset try to:</h3>
+                        <ul class="space-y-4 font-sans text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Establish bonds between members by making faithfulness to God a common goal.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Encourage "servant-hood" among all ages.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Truly and lovingly teach the Gospel to everyone.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Offer support and encouragement in a family atmosphere.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Praise God through our worship and daily living.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Use the Bible as our only authority.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-gold mt-1 mr-4"></i>
+                                <span>Serve our community as a non-denominational congregation.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-12 reveal reveal-delay-1">
+                        <div>
+                            <h3 class="text-3xl font-serif font-bold text-brand-navy mb-4">Our Place in Nashville</h3>
+                            <p class="text-gray-600 font-sans leading-relaxed">
+                                We began worshipping together in 1903 with only five families. In 1963 we built our present building. We strive to have unity in matters of faith, liberty in matters of opinion, and love in all things!
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-serif font-bold text-brand-navy mb-4">Christian Growth</h3>
+                            <p class="text-gray-600 font-sans leading-relaxed">
+                                We offer a wonderful curriculum at Sunset that we hope will increase your knowledge of the Bible, and aid your growth as a Christian.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 3: WHAT WE BELIEVE -->
+        <section id="beliefs" class="page-content bg-white py-20 lg:py-32">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Scriptural Foundation</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">What We Believe</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg prose-headings:font-serif prose-p:font-sans prose-p:text-gray-600 prose-p:leading-relaxed max-w-none reveal reveal-delay-1">
+                    <p class="text-xl first-letter:text-6xl first-letter:font-serif first-letter:text-brand-navy first-letter:mr-3 first-letter:float-left">
+                        What makes the church of Christ so different from the various religious organizations of today? The churches of Christ exist today because people have separated themselves from the various man-made religious institutions and returned to following the simple New Testament pattern as is found in the Bible.
+                    </p>
+                    
+                    <p>
+                        We adhere to the Bible as our only source of religious authority, and we are opposed to all departures from the original Biblical plan. We wear the same name as the Christians did in the first-century church (Rom. 16:16), teach the same plan of salvation (Acts 2:37-42), and worship the same way the church did in the days of the apostles (Acts 20:7). The phrase "church of Christ" is a descriptive term to signify Christ's Lordship of the Church, not a denominational label.
+                    </p>
+                    
+                    <div class="my-12 p-10 bg-brand-sand border-l-4 border-brand-navy">
+                        <p class="font-serif italic text-2xl text-brand-slate m-0 leading-snug">
+                            "In the New Testament, there was only one church, and every Christian who obeyed the plan of salvation was a member of it (Acts 2:38, 47)."
+                        </p>
+                    </div>
+
+                    <p>
+                        The idea of more than one church with various doctrines, forms of worship, and different names simply was not God's plan. The Bible never mentions modern denominations, and divisions in the original Church came about years later. The oldest denominations did not begin until several hundred years after Jesus established His church. Many man-made denominations have begun only within the last 100 years.
+                    </p>
+
+                    <p>
+                        However, God knew that there would be departures from His original plan (1 Tim. 4:1-2; 2 Tim. 4:3-4; Acts 20:29-30; 2 The. 2:3). The only guide for faith and practice of those early Christians was God's Word by the inspired preaching of Apostles. It is the map that gives all Christians the divine guidance that we need.
+                    </p>
+
+                    <p>
+                        Today we have the Bible and can know which doctrines are based on Biblical principles. If we compare ourselves, our beliefs, and our actions to what is written in God's holy Word we can know the truth. The Bible is the inspired, authoritative, and all-sufficient Word of God (2 Tim. 3:16-17).
+                    </p>
+
+                    <div class="mt-16 bg-brand-navy text-white p-10 lg:p-14 text-center relative overflow-hidden shadow-premium">
+                        <!-- BG accent -->
+                        <i class="fa-solid fa-quote-right absolute -bottom-10 -right-10 text-9xl text-white/5"></i>
+                        <p class="relative z-10 font-sans text-lg lg:text-xl font-light leading-relaxed m-0 text-brand-sand">
+                            The word "Church" is <em class="font-serif text-brand-gold not-italic font-bold">Ekklesia</em> in Greek and literally means "To call out". The church in the New Testament Scriptures refers to "A Called Out Body of People". The church includes all the saved who have been called out of the world into God's service through their obedience to our Lord's commands.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: WHAT TO EXPECT -->
+        <section id="expect" class="page-content bg-brand-sand py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Your Visit</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">What To Expect On a Sunday Morning</h2>
+                    <p class="text-lg text-gray-600 font-sans">
+                        When you visit, you can expect a warm and friendly greeting. The preaching, teaching, and all the actions of worship to be in accordance with God's word using book, chapter and verse, for everything said and done in the worship services. We will speak only where the Bible speaks, and be silent where the Bible is silent (1 Pet. 4:11). We would love to have you come and be our honored guest!
+                    </p>
+                </div>
+
+                <div class="mb-24">
+                    <h3 class="text-3xl font-serif font-bold text-brand-navy text-center mb-12 reveal">Our Worship Services</h3>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16 font-sans reveal">
+                        When you visit one of our Sunday services, you can expect to find a simple worship service that adheres to the teachings of the New Testament. When we assemble on every Lord’s Day (Acts 20:7; Rev. 1:10), which is Sunday, we will worship God by . . .
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Cards with premium styling -->
+                        <div class="bg-white p-10 shadow-premium group hover:-translate-y-2 transition duration-300 reveal">
+                            <div class="w-14 h-14 bg-brand-sand text-brand-gold flex items-center justify-center rounded-none mb-6 group-hover:bg-brand-navy group-hover:text-white transition duration-300">
+                                <i class="fa-solid fa-hands-praying text-2xl"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-4">Praying</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">We are led in prayer by different men in our congregation (1 Tim. 2:1-8).</p>
+                        </div>
+
+                        <div class="bg-white p-10 shadow-premium group hover:-translate-y-2 transition duration-300 reveal reveal-delay-1">
+                            <div class="w-14 h-14 bg-brand-sand text-brand-gold flex items-center justify-center rounded-none mb-6 group-hover:bg-brand-navy group-hover:text-white transition duration-300">
+                                <i class="fa-solid fa-music text-2xl"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-4">Singing</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The whole congregation joins together in praising God in song without the use of musical instruments (Eph. 5:19; Col. 3:16). In case anyone is unfamiliar with one of the songs, the words are available in our songbooks.</p>
+                        </div>
+
+                        <div class="bg-white p-10 shadow-premium group hover:-translate-y-2 transition duration-300 reveal reveal-delay-2">
+                            <div class="w-14 h-14 bg-brand-sand text-brand-gold flex items-center justify-center rounded-none mb-6 group-hover:bg-brand-navy group-hover:text-white transition duration-300">
+                                <i class="fa-solid fa-wine-glass text-2xl"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-4">Taking Communion</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Every Sunday, we remember Christ’s death by eating unleavened bread and drinking fruit of the vine (Acts 20:7). We sit quietly for this act and reflect on God's love and mercy in allowing His Son to die on the cross...</p>
+                        </div>
+
+                        <div class="bg-white p-10 shadow-premium group hover:-translate-y-2 transition duration-300 reveal lg:col-start-1 lg:col-end-3 xl:col-span-1">
+                            <div class="w-14 h-14 bg-brand-sand text-brand-gold flex items-center justify-center rounded-none mb-6 group-hover:bg-brand-navy group-hover:text-white transition duration-300">
+                                <i class="fa-solid fa-book-open text-2xl"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-4">Preaching</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Simply defined, preaching is "the Gospel through personality," and each Sunday we have just that. One of our two preachers will stand before the congregation and guide our thoughts through a Scriptural and Scripture filled theme (Acts 2:42; Rom. 10:14).</p>
+                        </div>
+
+                        <div class="bg-brand-navy text-white p-10 shadow-premium group hover:-translate-y-2 transition duration-300 reveal reveal-delay-1 lg:col-span-2">
+                            <div class="w-14 h-14 bg-white/10 text-brand-gold flex items-center justify-center rounded-none mb-6 group-hover:bg-brand-gold group-hover:text-white transition duration-300">
+                                <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
+                            </div>
+                            <h4 class="text-2xl font-serif font-bold mb-4">Giving</h4>
+                            <p class="text-brand-sand font-sans text-sm leading-relaxed opacity-90">Each member of this congregation contributes weekly to the work of the church (1 Cor. 16:2). We do not ask or expect our visitors to give anything in the offering.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bible Classes Full Width Feature -->
+                <div class="relative bg-white border border-gray-100 shadow-premium overflow-hidden reveal">
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+                            <h3 class="text-4xl font-serif font-bold text-brand-navy mb-6">Bible Classes</h3>
+                            <p class="text-gray-600 font-sans text-lg leading-relaxed mb-0">
+                                We have multiple Bible classes for every age. They are engaging and whether the classes study is textual or a topical, you can be assured that the Bible will be taught. The purpose of our Bible classes are not to entertain or babysit, but to grow in the nurture and admonition of the Lord.
+                            </p>
+                        </div>
+                        <div class="lg:w-1/2 bg-brand-slate relative min-h-[300px]">
+                            <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bible Study" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 5: LEADERSHIP -->
+        <section id="leadership" class="page-content bg-white py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Those Who Serve</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">Our Leadership & Staff</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <!-- ELDERS -->
+                <div class="mb-32">
+                    <div class="max-w-4xl mx-auto text-center mb-16 reveal">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mb-6">Our Elders</h3>
+                        <p class="text-gray-600 font-sans text-sm leading-relaxed mb-4">
+                            In the New Testament, men known as elders oversaw congregations of God’s people. According to the Bible (Acts 14:23, Phi. 1:1; Tit. 1:5), the orderly arrangement and superintendence of the church entailed the ordaining of qualified men to a duly appointed eldership. The elders were known as bishops, pastors, presbyters, overseers, and shepherds. These six English terms are used interchangeably and all of their corresponding Greek terms are found in Acts 20:17, 28 and 1 Peter 5:1-2.
+                        </p>
+                        <p class="text-gray-600 font-sans text-sm leading-relaxed">
+                            Each individual member of this office is to be qualified for this work by the criteria identified in 1 Timothy 3:1-7 and Titus 1:5-9. We commend the following qualified men to you as pastors, bishops, elders/overseers, presbyters, and shepherds of the flock at the Sunset church of Christ.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 reveal">
+                        <!-- Elder Card Template -->
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
+                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JH</div>
+                            <div>
+                                <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Jon Howard</h4>
+                                <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">Jon Howard was appointed to the work of an elder in 2019. He has been a member at Sunset his whole life, his father was an elder here at one time, and he served as a deacon before becoming an elder. Currently, Jon works as a loan officer at Diamond Bank in downtown Nashville. He married Jana in January of 2000, and together they have four children; Klaire, Eli, Kelley, & Joshua.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
+                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JJ</div>
+                            <div>
+                                <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">James Jamison</h4>
+                                <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">James Jamison was appointed to the work of an elder in 2007. He has been an active member of Sunset since 1978. He also previously served as a deacon for many years. James currently works as the plant manager for the Coca-Cola/Dr. Pepper Co. in Nashville. He and his wife, Bernice, have been married for 42 years and have 3 children; Brittany, Ashley, and Caleb.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
+                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">JJ</div>
+                            <div>
+                                <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">John Jamison</h4>
+                                <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">John Jamison was appointed to the work of an elder in 2019. He began working with this congregation as a young man, and was eventually made a deacon. John owns and operates a cattle farm in Center Point, AR. He and his wife Karrie have been married since 1995. They have seven children; Olivia, Emily, Isabel, Isaac, Owen, Ainsley, and Emmett.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-6 bg-brand-sand p-8 hover:shadow-premium transition duration-300">
+                            <div class="w-16 h-16 bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 text-brand-gold text-2xl font-serif italic shadow-sm">BM</div>
+                            <div>
+                                <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Bill Moorer</h4>
+                                <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-4">Elder</span>
+                                <p class="text-gray-600 font-sans text-sm leading-relaxed">Bill Moorer was appointed to the work of an elder in 2019. Bill moved here and began working with the Sunset congregation back in the late 1990's, and was eventually made a Deacon. Currently, he works as an accountant with Coca Cola/Dr. Pepper Co. in Nashville. He and his wife, Amelia, have been married for 24 years. They have three children; Gabe, Jake, and Adie.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEACONS -->
+                <div class="mb-32">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start reveal">
+                        <div class="lg:col-span-1 pr-8">
+                            <h3 class="text-3xl font-serif font-bold text-brand-navy mb-6">Deacons</h3>
+                            <div class="w-12 h-1 bg-brand-gold mb-6"></div>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed mb-4">
+                                While all Christians are to be servants, deacons are obviously men appointed to a particular role of service within the congregation as the helpers of the Eldership. Their work and responsibilities are vital to the growth and work of the church.
+                            </p>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">
+                                The specific “office of a deacon” is identified in 1 Timothy 3:10-13. An outline of qualifications is given to instruct the church about the type of men needed (Acts 6:3; 1 Tim. 3:8-10). At the Sunset church of Christ we are blessed with great men who love the Lord and who serve as deacons of the church.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Blake McIntosh</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Jerry Sharp</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Ben Wallis</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Heath Wallis</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">David Hilliard</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Dennis Horn</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Wes Howard</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Bob Jamison</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Ricky Westfall</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">J. W. Whisenhunt</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Joel Whisenhunt</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Robert Womack</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Russell Young</li>
+                                <li class="bg-white border border-gray-100 shadow-sm py-4 px-6 text-center font-serif text-brand-navy text-lg hover:shadow-md hover:border-brand-gold transition cursor-default">Jon Howard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STAFF -->
+                <div class="reveal">
+                    <h3 class="text-3xl font-serif font-bold text-brand-navy text-center mb-12">Church Staff</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <div class="text-center p-8 bg-white border border-gray-100 shadow-premium">
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Zackary Williams</h4>
+                            <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Preacher</span>
+                            <div class="w-8 h-px bg-gray-200 mx-auto mb-6"></div>
+                            <p class="text-gray-600 font-sans text-sm">Zack began working with us as the preacher at Sunset in February of 2023.</p>
+                        </div>
+
+                        <div class="text-center p-8 bg-white border border-gray-100 shadow-premium">
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">David Williams</h4>
+                            <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Secretary</span>
+                            <div class="w-8 h-px bg-gray-200 mx-auto mb-6"></div>
+                            <p class="text-gray-600 font-sans text-sm">David is a 1999 graduate of the Memphis School of Preaching, and served as the preacher at Sunset from 2005 - 2023.<br><br>He and his wife, Tina, have two sons, Matthew and Zackary.</p>
+                        </div>
+
+                        <div class="text-center p-8 bg-white border border-gray-100 shadow-premium flex flex-col justify-center">
+                            <h4 class="text-2xl font-serif font-bold text-brand-navy mb-1">Juanita Hilliard</h4>
+                            <span class="text-brand-gold font-sans text-xs uppercase tracking-widest font-semibold block mb-6">Custodian</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 6: HISTORY (Premium Timeline Layout) -->
+        <section id="history" class="page-content bg-brand-sand py-20 lg:py-32">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Our Heritage</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">Congregation History</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <!-- Vertical Timeline -->
+                <div class="relative border-l-2 border-brand-gold/30 pl-8 ml-4 md:ml-0 md:pl-12 space-y-16 py-8">
+                    
+                    <div class="relative timeline-dot reveal">
+                        <span class="text-brand-gold font-sans font-bold text-xl block mb-2">1903</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-navy mb-3">The Foundation</h3>
+                        <p class="text-gray-600 font-sans leading-relaxed">
+                            The church of Christ in Nashville was established by five families: Lewis Payne and Mary Elizabeth Dooley, Joe Ashmore and Elizabeth Nowell, Louis Theodore and Mariah Bird Pedron, John Belton and Laura Sparks Tinsley, and James (Jim) and Effie Williamson Toland. Belton Tinsley Taught Sunday School while Joel Nowell, one of the congregation's first elders, kept the books and prepared the Lord's Supper. Contributions averaged about 65 cents each Sunday. The church met in houses until 1905.
+                        </p>
+                    </div>
+
+                    <div class="relative timeline-dot reveal">
+                        <span class="text-brand-gold font-sans font-bold text-xl block mb-2">1909 - 1938</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-navy mb-3">Building a Home</h3>
+                        <p class="text-gray-600 font-sans leading-relaxed">
+                            They began meeting in a temporary structure moved around to various locations until 1926, when plans were made to erect a new building. After purchasing eight lots on Main Street, construction began. Reuben Sullivan and Therman and Dale Floyd helped unload bricks from rail cars. Men from surrounding congregations donated their labor and ladies prepared a noon meal under a big tent. The new building was completed in 1931 and paid in full on April 4, 1938.
+                        </p>
+                    </div>
+
+                    <div class="relative timeline-dot reveal">
+                        <span class="text-brand-gold font-sans font-bold text-xl block mb-2">1943 - 1964</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-navy mb-3">Growth & Expansion</h3>
+                        <p class="text-gray-600 font-sans leading-relaxed">
+                            An educational building was added in 1943. More classrooms were added in the 1950's and the entire building was air-conditioned. Ever increasing numbers led to yet another construction project. In 1964, a new building—our current meeting place—was erected at 1420 W. Sunset St. on 4.1 acres of land. The 20,000 square-foot plan was drafted by Arthur Johnson and built by Walter Dickey and Dean Rankin.
+                        </p>
+                    </div>
+
+                    <div class="relative timeline-dot reveal">
+                        <span class="text-brand-gold font-sans font-bold text-xl block mb-2">1970s - Present</span>
+                        <h3 class="text-2xl font-serif font-bold text-brand-navy mb-3">Continued Blessings</h3>
+                        <p class="text-gray-600 font-sans leading-relaxed">
+                            In the 1970's, the parking lot was paved, outdoor lighting installed, and an organized bus program initiated. Church records from 1974 show an average attendance in Sunday morning Bible Classes of 435. An 8160 sq-ft building (offices, library, nursery, classrooms) was added in 1977, followed by a 5,000 sq-ft multi-purpose building in 2004.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- List of Servants -->
+                <div class="mt-20 p-10 bg-white shadow-premium border border-gray-100 reveal">
+                    <h3 class="text-2xl font-serif font-bold text-brand-navy mb-6">Preachers Through the Years</h3>
+                    <p class="text-gray-600 font-sans text-sm leading-relaxed mb-8">
+                        The church has had numerous preachers throughout the years, including Milton Peebles, Harley Stone, Maurice McFarland, Felix Gilbert Copeland, Allen B. Harper, Robert H. Lyles, Harvey McRae Arnold, George Pledger, Malcolm Bowen, Clinton Elliot, Lynn Matheny, Ray Peters, Edwin Leon Jones, Don Stricklen, Ronald D. Reeves, Rick Lawson, and David Williams, who has been the preacher since March of 2005.
+                    </p>
+
+                    <h3 class="text-2xl font-serif font-bold text-brand-navy mb-6">Elders Who Have Served</h3>
+                    <p class="text-gray-600 font-sans text-sm leading-relaxed mb-4">
+                        Jim Toland, Joe Nowell, John Reese, John Baptist Chesshir, Lewis Payne Dooley, Wilson Lee Shofner, Thomas McAdams, Jackson H. Neece, James A. Floyd, John F. Sullivan, Ordis Watson, Angel T. Henry, Elijah Mike Floyd, Bailey Anderson, A. T. Oliver, Charlie Milwee Floyd, Don Carlos Pryor, Sr., Chester Andres, Remmel M. Henry, William Edgar Chesshir, Charley Green, William Thomas Gallahar, Blakely Onez Darling, Chester Young Woodruff, D. L. Green, Don Allen Pounds, Junior Milton Hilliard, Karon Dale Baxley, *Joe Biggs Martin, Floyd Clark, Jr., Danny H. Howard, *Jon Howard, James S. Jamison, John Williams, *James H. Jamison, *John Jamison, Robert A. (Bob) Jamison, Terry Moore, *Bill Moorer, and Phillip Turner.
+                    </p>
+                    <p class="text-brand-gold font-sans text-xs italic">* indicates men currently serving as elders.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7: MINISTRIES -->
+        <section id="ministries" class="page-content bg-white py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Our Work</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">Ministries</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <!-- Edification Grid -->
+                <div class="mb-24">
+                    <div class="flex items-center mb-10 reveal">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mr-6">Edification</h3>
+                        <div class="flex-grow h-px bg-gray-200"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-book-open text-brand-gold mr-3"></i>Bible Classes</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">We offer a wonderful curriculum at Sunset that we hope will increase your knowledge of the Bible, and aid your growth as a Christian. We have specific classes for every age group, from Kindergarten to Adults. Our elders oversee the teachers used and curriculum taught, it is their goal that these classes purpose be (simply stated) to study the Bible and make Christians.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-seedling text-brand-gold mr-3"></i>Youth @ Sunset</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a wonderful group of young people. Our goal is that they will establish a faith they can call their own and grow in their relationship with God. We strive to fulfill this goal through devotionals, service projects, retreats, outings, and fellowshipping at every opportunity. We would love to have you join us for any activity!</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-graduation-cap text-brand-gold mr-3"></i>College Group</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Sunset church of Christ has a very small group of young college-age adults, however they are also a very close group. They are constantly planning activities, get togethers, devotionals, and are always ready to help serve in the congregation.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-map text-brand-gold mr-3"></i>Preaching Rotations</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">In our area there are a lot of small towns/communities with smaller congregations in need of a preacher, and we do our best to fill that need. A group of men rotate through a list of congregations, preaching on Sundays. The men our Elders send out to preach are studied, passionate about the Gospel, and qualified to preach sound Doctrine.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-mug-hot text-brand-gold mr-3"></i>Monthly Breakfasts</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Once a month, the Men's and Ladies' groups meet for a fellowship breakfast and devotional.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-2 group relative overflow-hidden">
+                            <div class="absolute top-4 right-[-35px] bg-brand-slate text-white text-[10px] font-bold py-1 px-10 transform rotate-45 tracking-widest">NOT MEETING</div>
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-gem text-brand-gold mr-3"></i>Rubies Class</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">Rubies Class is the name of the Sunset Women's Bible Study Group. They meet once a month in the home of a member for a Bible study and devotional.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal group">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-tents text-brand-gold mr-3"></i>Barton Bible Camp</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">The Barton Bible Camp is a place loved by many people in this area. We host the first week of camp, which is Elementary week, and two other congregations host Jr. High and Sr. High weeks. The qualifications for being staff during this week are that you are a faithful Christian, and good example.</p>
+                        </div>
+
+                        <div class="p-8 border border-gray-100 bg-brand-sand hover:-translate-y-1 transition duration-300 reveal reveal-delay-1 group lg:col-span-2">
+                            <h4 class="text-xl font-serif font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition"><i class="fa-solid fa-users text-brand-gold mr-3"></i>Training Classes</h4>
+                            <p class="text-gray-600 font-sans text-sm leading-relaxed">In these bi-annual classes, our young men are taught all of the basics for leading in worship and for being future servants of the church. Our young ladies are taught how to serve others and to use their talents for the Lord.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Benevolence & Outreach Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    
+                    <!-- Benevolence -->
+                    <div class="reveal">
+                        <div class="flex items-center mb-8">
+                            <h3 class="text-3xl font-serif font-bold text-brand-navy mr-6">Benevolence</h3>
+                            <div class="flex-grow h-px bg-gray-200"></div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-house-chimney-medical text-brand-gold text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Paragould Children's Home</h4>
+                                    <p class="text-gray-600 font-sans text-sm">Children's Homes, Inc. is operated by members of the church out of Paragould, Arkansas.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-house-chimney-medical text-brand-gold text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Morrilton Children's Home</h4>
+                                    <p class="text-gray-600 font-sans text-sm">Southern Christian Children's Home is operated by members of the church, in Morrilton, Arkansas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outreach -->
+                    <div class="reveal reveal-delay-1">
+                        <div class="flex items-center mb-8">
+                            <h3 class="text-3xl font-serif font-bold text-brand-navy mr-6">Outreach</h3>
+                            <div class="flex-grow h-px bg-gray-200"></div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="border-b border-gray-100 pb-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Esudas Bontha's Work in India</h4>
+                                <p class="text-gray-600 font-sans text-sm">Esudas and his family are doing a great work of preaching the gospel, ministering to the churches, and giving a home to dozens of children.</p>
+                            </div>
+                            <div class="border-b border-gray-100 pb-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Memphis School of Preaching</h4>
+                                <p class="text-gray-600 font-sans text-sm">The Sunset church of Christ has a particular interest in the training of preachers. We have supported students from MSOP for years, praying that our efforts will help. Our brotherhood needs more men willing to preach the pure Gospel, and we want to aid those efforts.</p>
+                            </div>
+                            <div class="border-b border-gray-100 pb-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Southeast-Asia Missions</h4>
+                                <p class="text-gray-600 font-sans text-sm">Jeff Bell worked in South East Asia for many years with Daniel Hamm and assumed the work in 2020 when Daniel went to his eternal home. He has continued to teach and preach there as often as he is able.</p>
+                            </div>
+                            <div class="border-b border-gray-100 pb-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Truth For Today</h4>
+                                <p class="text-gray-600 font-sans text-sm">"Truth for Today World Mission School in Searcy, Arkansas, is a multifaceted non-profit organization dedicated to world evangelism. Directed by Eddie Cloer, a professor of Bible and preaching courses at Harding University, TFTWMS strives to teach faithfully the Holy Scriptures of our Lord."</p>
+                            </div>
+                            <div class="border-b border-gray-100 pb-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-navy mb-1">Families First</h4>
+                                <p class="text-gray-600 font-sans text-sm">"...they also serve Arkansas congregations and families as a Lobbyist with the Arkansas Legislature. Their testimonies before legislative committees present state lawmakers..."</p>
+                            </div>
+                            <div class="bg-brand-navy p-6 mt-4">
+                                <h4 class="text-lg font-serif font-bold text-brand-gold mb-2">Gospel Meetings</h4>
+                                <p class="text-white/80 font-sans text-sm">For us, Gospel Meetings are a treat! We host two annual meetings, one in the Spring, and another in the Fall. The speakers are always sound men who our elders know will rightly divide the Word of God.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAGE 8: CONTACT -->
+        <section id="contact" class="page-content bg-brand-sand py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-bold block mb-4">Connect With Us</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-navy mb-6">We would love for you to visit us soon.</h2>
+                    <div class="w-16 h-0.5 bg-brand-gold mx-auto"></div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row bg-white shadow-premium overflow-hidden reveal reveal-delay-1">
+                    
+                    <!-- Contact Info Panel (Dark) -->
+                    <div class="lg:w-1/3 bg-brand-navy text-white p-12 lg:p-16 flex flex-col justify-between relative">
+                        <!-- Decorative bg -->
+                        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+                        
+                        <div class="relative z-10 space-y-12">
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold text-brand-gold mb-6">Reach Out</h3>
+                                <div class="space-y-6 font-sans">
+                                    <div class="flex items-start">
+                                        <i class="fa-solid fa-map-pin mt-1 w-6 text-brand-gold opacity-80"></i>
+                                        <div>
+                                            <span class="block font-semibold mb-1">Location</span>
+                                            <a href="https://maps.app.goo.gl/2byTG6fC4uEo7VQB8" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition text-sm inline-block">1420 West Sunset Street<br>Nashville, AR 71852</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fa-solid fa-envelope-open-text mt-1 w-6 text-brand-gold opacity-80"></i>
+                                        <div>
+                                            <span class="block font-semibold mb-1">Mailing Address</span>
+                                            <span class="text-white/70 text-sm">P.O. Box 7<br>Nashville, AR 71852</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fa-solid fa-paper-plane mt-1 w-6 text-brand-gold opacity-80"></i>
+                                        <div>
+                                            <span class="block font-semibold mb-1">Email</span>
+                                            <a href="mailto:sunsetcofc@att.net" class="text-white/70 hover:text-white transition text-sm">sunsetcofc@att.net</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold text-brand-gold mb-6">Meeting Times</h3>
+                                <div class="space-y-3 font-sans text-sm text-white/80">
+                                    <div class="flex justify-between border-b border-white/10 pb-2">
+                                        <span>Sunday Bible Study</span>
+                                        <span>9:30 AM</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-white/10 pb-2">
+                                        <span>Sunday Worship</span>
+                                        <span>10:30 AM & 5:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between pt-2">
+                                        <span>Wednesday Bible Study</span>
+                                        <span>7:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modern Form Panel (Light) -->
+                    <div class="lg:w-2/3 p-12 lg:p-16">
+                        <h3 class="text-3xl font-serif font-bold text-brand-navy mb-8">Send a Message</h3>
+                        <form id="contactForm" class="space-y-8 font-sans">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="relative">
+                                    <input type="text" id="name" name="name" required class="peer w-full border-b-2 border-gray-200 bg-transparent pt-4 pb-1.5 text-gray-900 focus:outline-none focus:border-brand-gold transition-colors placeholder-transparent" placeholder="Name">
+                                    <label for="name" class="absolute left-0 top-0 text-xs text-gray-400 font-semibold tracking-wide uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand-gold peer-focus:font-semibold">Name *</label>
+                                </div>
+                                <div class="relative">
+                                    <input type="email" id="email" name="email" required class="peer w-full border-b-2 border-gray-200 bg-transparent pt-4 pb-1.5 text-gray-900 focus:outline-none focus:border-brand-gold transition-colors placeholder-transparent" placeholder="Email">
+                                    <label for="email" class="absolute left-0 top-0 text-xs text-gray-400 font-semibold tracking-wide uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand-gold peer-focus:font-semibold">Email *</label>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="relative">
+                                    <select id="addressed" name="addressed" class="w-full border-b-2 border-gray-200 bg-transparent pt-4 pb-1.5 text-gray-900 focus:outline-none focus:border-brand-gold transition-colors appearance-none rounded-none cursor-pointer">
+                                        <option value="general">General Inquiry</option>
+                                        <option value="elders">The Elders</option>
+                                        <option value="preacher">The Preacher</option>
+                                    </select>
+                                    <label for="addressed" class="absolute left-0 top-0 text-xs text-brand-gold font-semibold tracking-wide uppercase">Addressed to</label>
+                                    <i class="fa-solid fa-chevron-down absolute right-0 bottom-3 text-gray-400 text-xs pointer-events-none"></i>
+                                </div>
+                                <div class="relative">
+                                    <input type="text" id="subject" name="subject" class="peer w-full border-b-2 border-gray-200 bg-transparent pt-4 pb-1.5 text-gray-900 focus:outline-none focus:border-brand-gold transition-colors placeholder-transparent" placeholder="Subject">
+                                    <label for="subject" class="absolute left-0 top-0 text-xs text-gray-400 font-semibold tracking-wide uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand-gold peer-focus:font-semibold">Subject</label>
+                                </div>
+                            </div>
+
+                            <div class="relative pt-2">
+                                <textarea id="message" name="message" rows="4" required class="peer w-full border-b-2 border-gray-200 bg-transparent pt-4 pb-1.5 text-gray-900 focus:outline-none focus:border-brand-gold transition-colors placeholder-transparent resize-none" placeholder="Message"></textarea>
+                                <label for="message" class="absolute left-0 top-0 text-xs text-gray-400 font-semibold tracking-wide uppercase transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal peer-focus:top-0 peer-focus:text-xs peer-focus:text-brand-gold peer-focus:font-semibold">Message *</label>
+                            </div>
+
+                            <div class="pt-4">
+                                <button type="submit" class="bg-brand-navy hover:bg-brand-gold text-white font-sans font-medium tracking-wide uppercase text-sm py-4 px-10 transition-colors duration-300">
+                                    Submit Message
+                                </button>
+                            </div>
+                            <div id="formSuccess" class="hidden text-brand-gold font-medium mt-4 font-sans border-l-2 border-brand-gold pl-4 py-2">
+                                Thank you for your message! We will get back to you soon.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-brand-navy text-white py-16 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 border-b border-white/10 pb-12">
+                
+                <div class="lg:col-span-2">
+                    <span class="font-serif font-bold text-3xl block mb-2">Sunset</span>
+                    <span class="text-brand-gold font-sans tracking-[0.2em] uppercase text-xs font-semibold block mb-6">Church of Christ</span>
+                    <p class="text-white/60 font-sans max-w-sm text-sm leading-relaxed">
+                        A place to belong. Join us to find the sense of belonging that Jesus promised to the faithful. We want to help you bear your burdens and lift your spirits.
+                    </p>
+                </div>
+                
+                <!-- Consolidated Phone & Socials Column -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-6">Connect</h4>
+                    <ul class="space-y-4 font-sans text-sm text-white/70 mb-6">
+                        <li>
+                            <a href="tel:8708451824" class="hover:text-brand-gold transition flex items-center">
+                                <i class="fa-solid fa-phone mr-3 text-brand-gold"></i>
+                                (870) 845-1824
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:sunsetcofc@att.net" class="hover:text-brand-gold transition flex items-center">
+                                <i class="fa-solid fa-envelope mr-3 text-brand-gold"></i>
+                                sunsetcofc@att.net
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/Sunset-Church-of-Christ-Nashville-AR-338751343955/?ref=br_rs" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-brand-gold hover:text-white hover:border-brand-gold transition duration-300">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sunsetcoc/?hl=en" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-brand-gold hover:text-white hover:border-brand-gold transition duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-6">Location</h4>
+                    <p class="font-sans text-sm text-white/70">
+                        <a href="https://maps.app.goo.gl/2byTG6fC4uEo7VQB8" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors">
+                            1420 W Sunset St<br>Nashville, AR 71852
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-white/40 font-sans uppercase tracking-wider">
+                <p>&copy; 2018 by the Sunset church of Christ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client-Side Routing and Logic -->
+    <script>
+        // DOM Elements
+        const pages = document.querySelectorAll('.page-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        // Navigation Logic (SPA Routing)
+        function navigateTo(targetPageId, isMobile = false) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(targetPageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            navLinks.forEach(link => {
+                if(link.getAttribute('data-target') === targetPageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            if (isMobile) {
+                mobileMenu.classList.remove('open');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Re-trigger scroll animations for the new page
+            setTimeout(reveal, 100);
+        }
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Contact Form Submission Mock
+        if(contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                contactForm.reset();
+                formSuccess.classList.remove('hidden');
+                setTimeout(() => {
+                    formSuccess.classList.add('hidden');
+                }, 5000);
+            });
+        }
+        
+        // Initial load hash handler
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+            reveal(); // Trigger initial reveals
+        });
+
+        // --- Premium Scroll Reveal Animation Logic ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger threshold
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+    </script>
+</body>
+</html>
